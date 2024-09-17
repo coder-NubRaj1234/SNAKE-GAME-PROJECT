@@ -5,6 +5,9 @@ const snakeSoundBtn = document.querySelector("#snake-sound");
 const musicSlider = document.querySelector("#music-slider");
 const soundSlider = document.querySelector("#sound-slider");
 
+const gamepouseIcon = document.getElementById("play-pouse-btn");
+const playPauseIcon = document.getElementById("play-pause-icon");
+
 //selects some sounds ..............
 const musicSound = new Audio("/SNAKE-GAME-PROJECT/shunds/music.mp3");
 const foodSound = new Audio("/SNAKE-GAME-PROJECT/shunds/food.mp3");
@@ -13,6 +16,27 @@ const moveSound = new Audio("/SNAKE-GAME-PROJECT/shunds/move.mp3");
 
 let musciPlay = false;
 let soundPlay = false;
+
+let check = true;
+
+//event for game play & pause ..........
+gamepouseIcon.addEventListener("click" , function(e){
+    if(playPauseIcon.classList.contains("fa-play")){
+        playPauseIcon.classList.remove("fa-play");
+        playPauseIcon.classList.add("fa-pause");
+        check = false;
+        musciPlay = false;
+        musicSound.pause();        
+    }else{
+        playPauseIcon.classList.remove("fa-pause");
+        playPauseIcon.classList.add("fa-play");
+        check = true;
+        musciPlay = true;
+        musicSound.play();
+    };
+});
+
+
 
 //function for toggle classLists............
 function toggleSliderClass(sliderElm) {
@@ -55,4 +79,4 @@ downArrow.addEventListener("click", function () {
 });
 
 export {musciPlay , soundPlay};
-export {foodSound , gameOverSound , moveSound , musicSound}
+export {foodSound , gameOverSound , moveSound , musicSound , check}

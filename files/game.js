@@ -1,6 +1,6 @@
 
 import { musciPlay, soundPlay } from "./sound.js";
-import { foodSound, gameOverSound, moveSound, musicSound } from "./sound.js";
+import { foodSound, gameOverSound, moveSound, musicSound , check} from "./sound.js";
 
 let gameBord = document.querySelector("#game-board");
 let currentSpeedElm = document.querySelector("#current-score");
@@ -10,6 +10,7 @@ let hiscoreElm = document.querySelector("#height-score");
 let snakeElement;
 let food;
 
+let checkSelfCollide = true;
 let gameSpeed = 8;
 let lastTime = 0;
 
@@ -59,24 +60,43 @@ document.addEventListener("click", function (e) {
     };
 });
 
-//set food rendom position............
+//set food random position............
 function foodRandomLoc() {
     foodDir.x = (Math.floor(Math.random() * 19) + 1);
     foodDir.y = (Math.floor(Math.random() * 19) + 1);
 };
-foodRandomLoc()
+foodRandomLoc();
 
 function gamingTimimgFun(ctime) {
     window.requestAnimationFrame(gamingTimimgFun);
 
     if ((ctime - lastTime) / 1000 > (1 / gameSpeed)) {
+       if(check){
         gameEngine();
         lastTime = ctime;
+       };
     };
 };
 function gameEngine() {
-    //if sanke collide width wall.......
-    if (snakeArry[0].x > 20 || snakeArry[0].x <= 0 || snakeArry[0].y <= 0 || snakeArry[0].y > 20) {
+ 
+    //if you collide width yourself....................
+    snakeArry.forEach(function (item, index) {
+   if(checkSelfCollide){
+    if ((snakeArry[index].x === snakeArry[0].x && snakeArry[index].y === snakeArry[0].y) && (index !== 0)) {
+        musicSound.pause();
+        musicSound.currentTime = 0;
+        gameover("Collided with yourSelf");
+        snakeArry = [
+            { x: 10, y: 10 },
+        ];
+    };
+};
+});
+
+checkSelfCollide = true;
+       //if sanke collide width wall.......
+       if (snakeArry[0].x > 20 || snakeArry[0].x <= 0 || snakeArry[0].y <= 0 || snakeArry[0].y > 20) {
+        checkSelfCollide = false;
         musicSound.pause();
         musicSound.currentTime = 0;
         gameover("coddided with wall");
@@ -84,17 +104,6 @@ function gameEngine() {
             { x: 10, y: 10 },
         ];
     };
-    //if you collide width yourself....................
-    snakeArry.forEach(function (item, index) {
-        if ((snakeArry[index].x === snakeArry[0].x && snakeArry[index].y === snakeArry[0].y) && (index !== 0)) {
-            musicSound.pause();
-            musicSound.currentTime = 0;
-            gameover("Collided with yourSelf");
-            snakeArry = [
-                { x: 10, y: 10 },
-            ];
-        };
-    });
     //if sanke eat food generate new food and add new snake in snakeArry.........
     if (snakeArry[0].x === foodDir.x && snakeArry[0].y === foodDir.y) {
         Score++;
@@ -156,7 +165,7 @@ function checkFoodLoc() {
         if (items.x === foodDir.x && items.y === foodDir.y && index !== 0) {
             foodRandomLoc();
             checkFoodLoc();
-        } else { };
+        };
     });
 };
 checkFoodLoc();
@@ -194,7 +203,6 @@ function snakeMove(e) {
     let key = e.key;
     if (musciPlay) {
         musicSound.play();
-        console.log("music !!")
     };
     if (soundPlay) {
         moveSound.play();
