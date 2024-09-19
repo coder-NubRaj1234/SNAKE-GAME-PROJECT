@@ -82,7 +82,9 @@ function gameEngine() {
     //if you collide width yourself....................
     snakeArry.forEach(function (item, index) {
    if(checkSelfCollide){
+  if(index !== undefined){
     if ((snakeArry[index].x === snakeArry[0].x && snakeArry[index].y === snakeArry[0].y) && (index !== 0)) {
+        inputDir = { x: 0, y: 0 };
         musicSound.pause();
         musicSound.currentTime = 0;
         gameover("Collided with yourSelf");
@@ -90,12 +92,14 @@ function gameEngine() {
             { x: 10, y: 10 },
         ];
     };
+  };
 };
 });
 
 checkSelfCollide = true;
        //if sanke collide width wall.......
        if (snakeArry[0].x > 20 || snakeArry[0].x <= 0 || snakeArry[0].y <= 0 || snakeArry[0].y > 20) {
+        inputDir = { x: 0, y: 0 };
         checkSelfCollide = false;
         musicSound.pause();
         musicSound.currentTime = 0;
@@ -171,6 +175,7 @@ function checkFoodLoc() {
 checkFoodLoc();
 //gaem over functions.............
 function gameover(message) {
+    inputDir = { x: 0, y: 0 };
     Score = 0;
     currentScore();
     if (soundPlay) {
@@ -178,7 +183,6 @@ function gameover(message) {
     };
     alert(message);
     gameBord.innerHTML = '';
-    inputDir = { x: 0, y: 0 };
     snakeElement.style.gridColumnStart = snakeArry[0].x;
     snakeElement.style.gridRowStart = snakeArry[0].y;
     foodRandomLoc();
@@ -193,11 +197,47 @@ function gentareFood() {
     food.style.gridColumnStart = foodDir.x;
     gameBord.appendChild(food);
 };
-
 gentareFood();
+
 
 window.requestAnimationFrame(gamingTimimgFun);
 window.addEventListener("keyup", snakeMove);
+
+//for mobile snake game some code.........
+
+const mobileGameCol = document.querySelector("#game-controlor");
+
+mobileGameCol.addEventListener("click", function(e) {
+    if(e.target.classList.contains("fa-solid")){
+        if (musciPlay) {
+            musicSound.play();
+        };
+        if (soundPlay) {
+            moveSound.play();
+        };
+    }
+    if(e.target.classList.contains("fa-caret-up")){
+        if (inputDir.y !== 1) {
+            inputDir.x = 0;
+            inputDir.y = -1;
+        }
+    } else if(e.target.classList.contains("fa-caret-down")){
+        if (inputDir.y !== -1) {
+            inputDir.x = 0;
+            inputDir.y = 1;
+        };
+    } else if(e.target.classList.contains("fa-caret-left")){
+        if (inputDir.x !== 1) {
+            inputDir.x = -1;
+            inputDir.y = 0;
+        };
+    } else if(e.target.classList.contains("fa-caret-right")){
+        if (inputDir.x !== -1) {
+            inputDir.x = 1;
+            inputDir.y = 0;
+        };
+    };
+});
 
 function snakeMove(e) {
     let key = e.key;

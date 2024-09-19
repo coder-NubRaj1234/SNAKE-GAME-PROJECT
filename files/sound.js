@@ -25,14 +25,20 @@ gamepouseIcon.addEventListener("click" , function(e){
         playPauseIcon.classList.remove("fa-play");
         playPauseIcon.classList.add("fa-pause");
         check = false;
-        musciPlay = false;
+        // musciPlay = false;
+        if(!musciPlay){
+            // musicSound.pause();
+        };
         musicSound.pause();        
     }else{
         playPauseIcon.classList.remove("fa-pause");
         playPauseIcon.classList.add("fa-play");
         check = true;
-        musciPlay = true;
-        musicSound.play();
+        // musciPlay = true;
+        if(musciPlay){
+            musicSound.pause();
+        };
+        // musicSound.play();
     };
 });
 
@@ -53,7 +59,6 @@ function toggleSliderClass(sliderElm) {
 musicBtn.addEventListener("click", function () {
     toggleSliderClass(musicSlider);
     musciPlay = !musciPlay ? true : false ;
-    console.log("Music" ,musciPlay);
     // checkSound(musciPlay, soundPlay);
 });
 snakeSoundBtn.addEventListener("click", function () {

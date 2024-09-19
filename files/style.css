@@ -12,23 +12,27 @@
   background: url("/SNAKE-GAME-PROJECT/imgs/bg-img.jpg") no-repeat;
   background-size: cover;
   position: relative;
+  overflow: hidden;
 }
+
 #lables {
   width: 6vw;
-  background:#fff;
+  background: #fff;
   border: none;
   outline: none;
   position: absolute;
   top: 6%;
   left: 74%;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-  rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-  rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
-#lables-postion{
+
+#lables-postion {
   display: none;
 }
-#selectr{
+
+#selectr {
   width: 100%;
   background: #fff;
   border: none;
@@ -41,12 +45,16 @@
   padding: 7px 10px 7px 0;
   -webkit-appearance: none;
 }
-option{
+
+option {
   font-size: 18px;
-  letter-spacing: 2px;  
+  letter-spacing: 2px;
   font-family: "Roboto", sans-serif;
   text-align: center;
+  outline: none;
+  border: none;
 }
+
 #sound-container {
   width: 18vw;
   background: #fff;
@@ -59,7 +67,7 @@ option{
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-#sound-container > h4 {
+#sound-container>h4 {
   font-size: 20px;
   font-weight: 500;
   border-bottom: 2px solid black;
@@ -76,32 +84,39 @@ option{
   cursor: pointer;
 }
 
-#sound-container > h4 > button > i {
+#sound-container>h4>button>i {
   font-size: 26px;
 }
+
 #sound {
   padding: 10px;
 }
+
 #sound {
   display: none;
 }
+
 .display-visible {
   display: block !important;
 }
+
 button {
   border: none;
   outline: none;
   cursor: pointer;
 }
-ul li > i {
+
+ul li>i {
   position: absolute;
   left: 0px;
   top: 13px;
 }
-ul li > span {
+
+ul li>span {
   position: relative;
   left: 30px;
 }
+
 ul li {
   list-style: none;
   font-size: 18px;
@@ -111,12 +126,14 @@ ul li {
   position: relative;
   font-weight: 500;
 }
-ul li > button > span {
+
+ul li>button>span {
   font-size: 18px;
   letter-spacing: 2px;
   color: #fff;
 }
-ul li > button {
+
+ul li>button {
   padding: 5px 16px;
   background: rgb(176, 103, 227);
   position: absolute;
@@ -128,12 +145,15 @@ ul li > button {
   align-items: center;
   gap: 30px;
 }
+
 .right {
   right: 0;
 }
+
 .left {
   left: 0;
 }
+
 #music-slider {
   padding: 14px 28px;
   border: 2px solid gray;
@@ -141,6 +161,7 @@ ul li > button {
   position: absolute;
   background: rgb(248, 115, 199);
 }
+
 #sound-slider {
   padding: 14px 28px;
   border: 2px solid gray;
@@ -148,6 +169,7 @@ ul li > button {
   position: absolute;
   background: rgb(248, 115, 199);
 }
+
 #score-header {
   width: 40%;
   height: 5%;
@@ -178,18 +200,19 @@ ul li > button {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    display:grid;
-    grid-template-columns: repeat(20 , 1fr);
-    grid-template-rows: repeat(20 , 1fr);
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
 }
-.snake-head{
+
+.snake-head {
   background: #fff;
   border-radius: 10px;
   position: relative;
-  
 }
-.snake-head::after{
-  content:"";
+
+.snake-head::after {
+  content: "";
   padding: 5px;
   background: #000;
   border-radius: 50%;
@@ -197,8 +220,9 @@ ul li > button {
   top: 45%;
   left: 5px;
 }
-.snake-head::before{
-  content:"";
+
+.snake-head::before {
+  content: "";
   padding: 5px;
   background: #000;
   border-radius: 50%;
@@ -206,22 +230,199 @@ ul li > button {
   top: 45%;
   right: 5px;
 }
-.snake-food{
+
+.snake-food {
   background: #f5700b;
   border-radius: 10px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
-.snake-body{
+
+.snake-body {
   background: rgb(209, 21, 140);
   border-radius: 10px;
 }
 
-#play-pouse-btn > i{
+#play-pouse-btn>i {
   font-size: 2rem;
   color: #fff;
 }
+
 #play-pouse-btn {
   background: transparent;
   border: none;
   outline: none;
+}
+#game-controlor{
+  display: none;
+}
+
+@media screen and (max-width: 500px) {
+  #game-container {
+    background-size: 100% 100%;
+    object-fit: cover;
+  }
+
+  #game-board {
+    width: 90%;
+    height: 70%;
+    left: 5%;
+  }
+
+  #score-header {
+    width: 90%;
+    left: 5%;
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .snake-head::after {
+    padding: 3px;
+    left: 6%;
+  }
+
+  .snake-head::before {
+    padding: 3px;
+    right: 6%;
+  }
+
+  #sound-container {
+    top: 10px;
+    left: 20px;
+    width: 62vw;
+    z-index: 2;
+    padding: 0.1rem 0.5rem 0.1rem 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  #dowArrow {
+    right: 0.1rem;
+  }
+
+  #sound-container>h4>button>i {
+    font-size: 20px;
+  }
+
+  #sound-container>h4 {
+    font-size: 17px;
+  }
+
+  #sound-slider,
+  #music-slider {
+    padding: 7.5px 14px;
+  }
+
+  #sound {
+    padding: 10px 3px;
+  }
+
+  ul li>button {
+    padding: 0px 0px;
+    right: 1px;
+    top: 7px;
+    gap: 5px;
+  }
+
+  ul li>button>span:first-child {
+    padding-left: 5px;
+  }
+
+  ul li>button>span:nth-child(2) {
+    padding-right: 5px;
+  }
+
+  ul> li> span {
+    position: relative;
+    left: 16px;
+    bottom: 2px;
+  }
+  
+  ul li {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  ul li>button>span {
+    font-size: 16px;
+  }
+  
+  #lables {
+    top: 6px;
+    width: 23vw;
+    border-radius: 9px;
+    left: 72%;
+}
+
+#selectr {
+  width: 100%;
+  border-radius: 9px;
+  font-size: 13px;
+  text-align: center;
+}
+option {
+  font-size: 14px;
+  font-size: 15px;
+}
+
+#play-pouse-btn i {
+  font-size: 18px;
+}
+
+#game-controlor{
+  display: block;
+  position: absolute;
+  bottom: 0;
+
+  /* left: 40%; */
+  width: 100%;
+  height: 20%;
+}
+#game-controlor >button{
+  position: absolute;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+#game-controlor >button > i{
+  font-size: 5rem;
+  color: #fff;
+}
+#Arrow-up{
+    top: 0.5rem;
+    left: 45%;
+}
+#Arrow-down{
+  top: 6.5rem;
+  left: 45%;
+}
+#Arrow-left{
+  top: 3.5rem;
+    left: 30%;
+}
+#Arrow-right{
+  top: 3.5rem;
+  left: 62%;
+}
+}
+
+
+  #Arrow-down {
+
+  }
+  #Arrow-left {
+    /* top: 3rem; */
+    /* left: 42%; */
+  
+  }
+  #Arrow-up {
+    /* left: 48%; */
+    
+  }
+  #Arrow-right {
+    /* top: 3rem; */
+    /* left: 53%; */
+   
+  }
 }
